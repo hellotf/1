@@ -4,14 +4,16 @@ def readFile(location,date,code):
     time=date.strftime("%Y%m%d")
     ym = date.strftime("%Y%m")
     rootDir = 'C:\XX\workspace\DZH-'+location+ym+'-TXT'
+    if 'DZH-'+location+ym+'-TXT' not in os.listdir('C:\XX\workspace'):
+        raise Exception('no such folder')
     filePath=os.listdir(rootDir)
     if time not in filePath:
-        print('no such file!')    
+        raise Except('no such file!')    
     subpath = os.path.join(rootDir,time)
     codePath = os.listdir(subpath)
     filename = code+'_'+time+'.txt'
     if filename not in codePath:
-        print('no such file')
+        raise Exception('no such file')
     filePath = os.path.join(subpath,filename)
     file = open(filePath).read()
     return file
