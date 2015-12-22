@@ -1,0 +1,26 @@
+def readFile(date,code):
+    import os 
+    import datetime
+    time=date.strftime("%Y%m%d")
+    ym = time[0:6]
+    rootDir = 'C:\XX\workspace\DZH-SH'+ym+'-TXT'
+    filePath=os.listdir(rootDir)
+    if time not in filePath:
+        print('no such file!')    
+    subpath = os.path.join(rootDir,time)
+    codePath = os.listdir(subpath)
+    filename = code+'_'+time+'.txt'
+    if filename not in codePath:
+        print('no such file')
+    filePath = os.path.join(subpath,filename)
+    f = open(filePath)
+    file = f.read()
+    f.close()
+    return file
+
+
+import datetime
+date=datetime.date(2014, 3, 5)
+code = '000001'
+file = readFile(date,code)
+print(file)
