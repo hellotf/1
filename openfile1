@@ -36,10 +36,11 @@ def readFile(location,date,code):
         raise Exception('no such folder')
     filename = code+'_'+time+'.txt'
     wholepath = 'DZH-'+location+ym+'-TXT'+'/'+time+'/'+filename
-    fileList=zipfile.ZipFile(rootDir+'.zip').namelist()
+    z = zipfile.ZipFile(rootDir+'.zip')
+    fileList=z.namelist()
     if wholepath not in fileList:
         raise Exception('no such file')    
-    file = open(wholepath).read()
+    file = z.read(wholepath)
     return file
 
 location = 'SH' 
